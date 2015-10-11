@@ -13,10 +13,11 @@
     <script src="mapsetup.js"></script>
     <script>
       var map;
-      var infowindows;
-      var redproperties;
-      var greenproperties;
-      var blueproperties;
+      var propdataobj = [];
+      var propertylables;
+      var balence_due_properties;
+      var compliance_properties;
+      var construction_properties;
       var initialzoom = parseFloat(getContentValue("initial-zoom"));
       var initiallat = parseFloat(getContentValue("initial-lat"));
       var initiallong = parseFloat(getContentValue("initial-long"));
@@ -50,10 +51,8 @@
          infowindow.open(map);
        });
 
-     // EXECUTE MAPPING CHANGES
-       makePropertyRectangles();
-       makeInfowindows();
-
+       // CREATE BOXES around property and add LABLES with housenumber, etc
+       renderHomes();
        // Create the DIV to hold the control and call the left controll constructor
        // passing in this DIV.
        var leftControlDiv = document.createElement('div');

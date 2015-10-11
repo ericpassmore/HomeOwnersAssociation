@@ -68,48 +68,37 @@ function LeftControl(controlDiv, map){
   // storeage for control state
   var control = this;
   // Set the toggle upon construction
-  control.infowindowtoggle_ = "off";
+  control.propertylabletoggle_ = "off";
 
   // Set CSS for the control border.
   var controlUI = document.createElement('div');
-  controlUI.style.backgroundColor = '#fff';
-  controlUI.style.border = '2px solid #fff';
-  controlUI.style.borderRadius = '3px';
-  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.marginBottom = '22px';
-  controlUI.style.textAlign = 'center';
+  controlUI.setAttribute("class", "controlui");
   controlUI.title = 'Click to toggle information';
   controlDiv.appendChild(controlUI);
 
   // Set CSS for the control interior.
   var controlText = document.createElement('div');
-  controlText.setAttribute("id","infowindowcontrol");
-  controlText.style.color = 'rgb(25,25,25)';
-  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-  controlText.style.fontSize = '16px';
-  controlText.style.lineHeight = '38px';
-  controlText.style.paddingLeft = '5px';
-  controlText.style.paddingRight = '5px';
-  controlText.innerHTML = 'Infowindow Toggle';
+  controlText.setAttribute("class", "controltext");
+  controlText.setAttribute("id","proplablecontrol");
+  controlText.innerHTML = 'Property Lable Toggle';
   controlUI.appendChild(controlText);
 
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener('click', function() {
-    var currentState = control.getInfowindowState();
+    var currentState = control.getPropertylableState();
 
     if ( currentState == "off" ) {
-        console.log("length"); console.log(infowindows.length);
-        for (i = 0; i < infowindows.length; i++) {
-            infowindows[i].close();
+        console.log("length"); console.log(propertylables.length);
+        for (i = 0; i < propertylables.length; i++) {
+            propertylables[i].close();
         } 
-        infowindows = [];
+        propertylables = [];
     } else {
         console.log("making windows");
-        makeInfowindows();
+        renderHomes("labels only");
     }
 
-    control.toggleInfowindowState();
+    control.togglePropertylableState();
 
   });
 }
@@ -118,24 +107,24 @@ function LeftControl(controlDiv, map){
  * Define a property to hold the toogle state.
  * @private
  */
-LeftControl.prototype.infowindowtoggle_ = null;
+LeftControl.prototype.propertylabletoggle_ = null;
 
 /**
- * Gets the map center.
+ * Get the current state of toggle
  * return string on or off
  */
-LeftControl.prototype.getInfowindowState = function() {
-  return this.infowindowtoggle_;
+LeftControl.prototype.getPropertylableState = function() {
+  return this.propertylabletoggle_;
 };
 
 /**
- * Sets the map center.
+ * Turns lables on or off
  * 
  */
-LeftControl.prototype.toggleInfowindowState = function() {
-  if ( this.infowindowtoggle_ == "off") {
-      this.infowindowtoggle_ = "on";
+LeftControl.prototype.togglePropertylableState = function() {
+  if ( this.propertylabletoggle_ == "off") {
+      this.propertylabletoggle_ = "on";
   } else {
-      this.infowindowtoggle_ = "off";
+      this.propertylabletoggle_ = "off";
   }
 };
