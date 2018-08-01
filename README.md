@@ -1,8 +1,9 @@
 HomeOwnersAssociation
 =====================
 
-Tracks data for HomeOwnersAssociation contact information, assessments, fees, etc
-inbox library from
-http://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox.js
+Tracks assessments, construction/remodel, and rule viloations for single family homes.
+* Mobile app using React Native
+* Web version with React/HTML
+* Data stored in Google Sheets for ease of use and bulk edit
 
-required simple http server to read json file
+Google Map and List view
